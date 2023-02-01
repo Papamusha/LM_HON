@@ -1,0 +1,92 @@
+.App {
+  text-align: center;
+  background-color: #282c34;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.axis-label {
+  color:#ececec;
+}
+
+body {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  margin: 0;
+  overflow: hidden;
+  font-family: 'Poppins', sans-serif;
+}
+
+pre {
+  font-size: 7em;
+}
+
+.marks .land {
+  fill: #ececec;
+}
+
+.marks .sphere {
+  fill: #fbfbfb;
+}
+
+.marks .interiors {
+  fill: none;
+  stroke: #d9dfe0;
+}
+
+.marks .graticules, .tick line {
+  fill: none;
+  stroke: #ececec;
+}
+
+circle {
+  fill: #137B80;
+  opacity: 0.3;
+}
+
+.tick text {
+  fill: #635F5D;
+  font-size: 0.5em;
+}
+.mark {
+  fill: #137B80;
+}
+.axis-label {
+  font-size: 0.5em;
+  fill: #635F5D;
+}
+
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -20,13 +20,13 @@ const xAxisLabelOffset = 54;
 const yAxisLabelOffset = 30;
 const xAxisTickFormat = timeFormat('%m/%d/%Y');
 
+const xAxisLabel = 'Time';
+
+const yValue = d => d['Total Dead and Missing'];
+const yAxisLabel = 'Total Dead and Missing';
+
 export const DateHistogram = ({ data, width, height, setBrushExtent, xValue }) => {
   const brushRef = useRef();
-
-  const xAxisLabel = 'Time';
-
-  const yValue = d => d['Total Dead and Missing'];
-  const yAxisLabel = 'Total Dead and Missing';
 
   const innerHeight = height - margin.top - margin.bottom;
   const innerWidth = width - margin.left - margin.right;
@@ -36,9 +36,9 @@ export const DateHistogram = ({ data, width, height, setBrushExtent, xValue }) =
     .range([0, innerWidth])
     .nice(), [data, xValue, innerWidth]);
 
-  const binnedData = useMemo(() / {
+  const binnedData = useMemo(() => {
       const [start, stop] = xScale.domain();
-  } bin()
+    return bin()
     .value(xValue)
     .domain(xScale.domain())
     .thresholds(timeMonths(start, stop))(data)
@@ -47,10 +47,13 @@ export const DateHistogram = ({ data, width, height, setBrushExtent, xValue }) =
       x0: array.x0,
       x1: array.x1
     }));
+  },
+  [xValue, xScale, data, yValue]
+  );
 
-  const yScale = scaleLinear()
+  const yScale = useMemo(() => scaleLinear() //useMemo is used to stop the scale from being reloaded more than once for optimisation
     .domain([0, max(binnedData, d => d.y)])
-    .range([innerHeight, 0]);
+    .range([innerHeight, 0]), [binnedData, innerHeight]);
 
   useEffect(() => {
     const brush = brushX().extent([[0, 0], [innerWidth, innerHeight]]);

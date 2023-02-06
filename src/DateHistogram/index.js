@@ -22,8 +22,8 @@ const xAxisTickFormat = timeFormat('%m/%d/%Y');
 
 const xAxisLabel = 'Time';
 
-const yValue = d => d['Total Dead and Missing'];
-const yAxisLabel = 'Total Dead and Missing';
+const yValue = d => d['hashtag'];
+const yAxisLabel = 'Hashtag';
 
 export const DateHistogram = ({ data, width, height, setBrushExtent, xValue }) => {
   const brushRef = useRef();
@@ -91,9 +91,9 @@ export const DateHistogram = ({ data, width, height, setBrushExtent, xValue }) =
           {xAxisLabel}
         </text>
         <Marks
-          binnedData={binnedData}
           xScale={xScale}
           yScale={yScale}
+          binnedData={binnedData}
           tooltipFormat={d => d}
           circleRadius={2}
           innerHeight={innerHeight}

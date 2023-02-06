@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
-import { csv } from 'd3';
+import { csv, csvParse } from 'd3';
 
 const csvUrl =
-  'https://gist.githubusercontent.com/curran/a9656d711a8ad31d812b8f9963ac441c/raw/c22144062566de911ba32509613c84af2a99e8e2/MissingMigrants-Global-2019-10-08T09-47-14-subset.csv';
+  'https://gist.githubusercontent.com/Papamusha/af9c1638e971c4321e507cd6f50b8ac4/raw/0199d50610efc4c03bafea7f98bc59f11fa96c61/smhashloc.csv';
 
 const row = d => {
-  d.coords = d['Location Coordinates'].split(',').map(d => +d).reverse();
-  d['Total Dead and Missing'] = + d['Total Dead and Missing'];
-  d['Reported Date'] = new Date(d['Reported Date']);
+  d.coordinates = d['coordinates'].split(',').map(d => +d).reverse();
+  d['hashtag'] = csvParse(JSON.stringify(d['hashtag']));
+  d['date'] = new Date(d['date']);
   return d;
 };
 
@@ -17,6 +17,7 @@ export const useData = () => {
   useEffect(() => {
     csv(csvUrl, row).then(setData);
   }, []);
-
+  
+console.log(data);
   return data;
 };

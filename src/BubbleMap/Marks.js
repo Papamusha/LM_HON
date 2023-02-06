@@ -23,7 +23,7 @@ export const Marks = ({
     </>,[path, graticule, interiors, land])
     }
     {data.map(d => {
-      const [x, y] = projection(d.coords);
+      const [x, y] = projection(d.coordinates);
       return <circle cx={x} cy={y} r={sizeScale(sizeValue(d))} />;
     })}
   </g>

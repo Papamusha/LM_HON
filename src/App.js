@@ -12,7 +12,7 @@ function App() {
   const height = 700;
   const dateHistogramSize = 0.2; //sets size of histogram
   const [brushExtent, setBrushExtent] = useState(); // values for brush range
-  const xValue = d => d['Reported Date']; // xValue is called here instead of index.js in DateHistogram for data filtering
+  const xValue = d => d['date']; // xValue is called here instead of index.js in DateHistogram for data filtering
 
   //this statement places a loading screen if data is not yet loaded
   if (!map || !data) { 
@@ -29,7 +29,7 @@ function App() {
     <header>
       <h1>Honours Project Testing Grounds</h1>
     <svg width={width} height={height}> 
-      <BubbleMap data={filteredData} map={map} />
+      <BubbleMap data={data} filteredData={filteredData} map={map} />
       <g transform={`translate(0, ${height - dateHistogramSize * height})`}>
         <DateHistogram
           data={data}

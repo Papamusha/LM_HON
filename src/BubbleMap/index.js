@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import { scaleSqrt, max } from 'd3';
 import { Marks } from './Marks';
 
-const sizeValue = d => d['Total Dead and Missing'];
+const sizeValue = d => d['hashtag'];
 const maxRadius = 15;
 
 export const BubbleMap = ({ data, filteredData, map }) => {
@@ -12,11 +12,6 @@ export const BubbleMap = ({ data, filteredData, map }) => {
     .range([0, maxRadius]), [data, sizeValue, maxRadius]);
 
   return (
-    <Marks
-      map={map}
-      data={filteredData}
-      sizeScale={sizeScale}
-      sizeValue={sizeValue}
-    />
+    <Marks data={filteredData} map={map} sizeScale={sizeScale} sizeValue={sizeValue}/>
   );
 };

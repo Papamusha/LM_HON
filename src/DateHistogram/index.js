@@ -1,15 +1,4 @@
-import {
-  scaleLinear,
-  scaleTime,
-  max,
-  timeFormat,
-  extent,
-  histogram as bin,
-  timeMonths,
-  sum,
-  brushX,
-  select,
-} from 'd3';
+import { scaleLinear, scaleTime, max, timeFormat, extent, histogram as bin, timeMonths, sum, brushX, select, } from 'd3';
 import { useRef, useEffect, useMemo } from 'react'; 
 import { AxisBottom } from './AxisBottom';
 import { AxisLeft } from './AxisLeft';
@@ -22,7 +11,7 @@ const xAxisTickFormat = timeFormat('%m/%d/%Y');
 
 const xAxisLabel = 'Time';
 
-const yValue = d => d['hashtag'];
+const yValue = d => d['hashtagCount'];
 const yAxisLabel = 'Hashtag';
 
 export const DateHistogram = ({ data, width, height, setBrushExtent, xValue }) => {

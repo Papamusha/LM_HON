@@ -2,11 +2,12 @@ import { useState, useEffect } from 'react';
 import { csv } from 'd3';
 
 const csvUrl =
-  'https://gist.githubusercontent.com/Papamusha/af9c1638e971c4321e507cd6f50b8ac4/raw/0199d50610efc4c03bafea7f98bc59f11fa96c61/smhashloc.csv';
+  'https://gist.githubusercontent.com/Papamusha/9369db1a13fe318d3435de5a68357d59/raw/7c737f9dddf81165673b8237093a969b0a0be3ed/gistfile1.txt';
 
 const row = d => {
-  d.coordinates = d['coordinates'].split(',').map(d => +d).reverse();
   d['hashtag'] = d['hashtag'];
+  d.coordinates = d['coordinates'].split(',').map(d => +d).reverse();
+  d['hashtagCount'] = +d['hashtagCount'];
   d['date'] = new Date(d['date']);
   return d;
 };

@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import { scaleSqrt, max } from 'd3';
 import { Marks } from './Marks';
 
+const hashtagAtt = d => d['hashtag'];
 const sizeValue = d => d['hashtagCount'];
 const maxRadius = 15;
 

@@ -24,6 +24,7 @@ export const Marks = ({
     }
     {data.map(d => {
       const [x, y] = projection(d.coordinates);
+      if (d['hashtag'] === 'whales')
       return <circle cx={x} cy={y} r={sizeScale(sizeValue(d))} />;
     })}
   </g>

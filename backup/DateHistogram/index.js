@@ -1,5 +1,13 @@
-import { scaleLinear, scaleTime, max, timeFormat, extent, histogram as bin, timeMonths, sum, brushX, select, } from 'd3';
-import { useRef, useEffect, useMemo } from 'react'; 
+import {
+  scaleLinear,
+  scaleTime,
+  max,
+  timeFormat,
+  extent,
+  histogram as bin,
+  timeMonths,
+  sum
+} from 'd3';
 import { AxisBottom } from './AxisBottom';
 import { AxisLeft } from './AxisLeft';
 import { Marks } from './Marks';
@@ -7,27 +15,27 @@ import { Marks } from './Marks';
 const margin = { top: 0, right: 30, bottom: 20, left: 45 };
 const xAxisLabelOffset = 54;
 const yAxisLabelOffset = 30;
-const xAxisTickFormat = timeFormat('%m/%d/%Y');
 
-const xAxisLabel = 'Time';
+export const DateHistogram = ({ data, width, height }) => {
+  const xValue = d => d['Reported Date'];
+  const xAxisLabel = 'Time';
 
-const yValue = d => d['hashtagCount'];
-const yAxisLabel = 'Hashtag';
-
-export const DateHistogram = ({ data, width, height, setBrushExtent, xValue }) => {
-  const brushRef = useRef();
+  const yValue = d => d['Total Dead and Missing'];
+  const yAxisLabel = 'Total Dead and Missing';
 
   const innerHeight = height - margin.top - margin.bottom;
   const innerWidth = width - margin.left - margin.right;
 
-  const xScale = useMemo(() => scaleTime() //useMemo is used to stop the scale from being reloaded more than once for optimisation
+  const xAxisTickFormat = timeFormat('%m/%d/%Y');
+
+  const xScale = scaleTime()
     .domain(extent(data, xValue))
     .range([0, innerWidth])
-    .nice(), [data, xValue, innerWidth]);
+    .nice();
 
-  const binnedData = useMemo(() => {
-      const [start, stop] = xScale.domain();
-    return bin()
+  const [start, stop] = xScale.domain();
+
+  const binnedData = bin()
     .value(xValue)
     .domain(xScale.domain())
     .thresholds(timeMonths(start, stop))(data)
@@ -36,25 +44,13 @@ export const DateHistogram = ({ data, width, height, setBrushExtent, xValue }) =
       x0: array.x0,
       x1: array.x1
     }));
-  },
-  [xValue, xScale, data, yValue]
-  );
 
-  const yScale = useMemo(() => scaleLinear() //useMemo is used to stop the scale from being reloaded more than once for optimisation
+  const yScale = scaleLinear()
     .domain([0, max(binnedData, d => d.y)])
-    .range([innerHeight, 0]), [binnedData, innerHeight]);
-
-  useEffect(() => {
-    const brush = brushX().extent([[0, 0], [innerWidth, innerHeight]]);
-    brush(select(brushRef.current));
-    brush.on('brush end', (selection) => {
-			setBrushExtent(selection.selection && selection.selection.map(xScale.invert));
-		});
-  }, [innerWidth, innerHeight]);
+    .range([innerHeight, 0]);
 
   return (
     <>
-    <h3> Use the Histogram below to select time-frame of data.</h3>
       <rect width={width} height={height} fill='white'/>
       <g transform={`translate(${margin.left},${margin.top})`}>
         <AxisBottom
@@ -81,14 +77,13 @@ export const DateHistogram = ({ data, width, height, setBrushExtent, xValue }) =
           {xAxisLabel}
         </text>
         <Marks
+          binnedData={binnedData}
           xScale={xScale}
           yScale={yScale}
-          binnedData={binnedData}
           tooltipFormat={d => d}
           circleRadius={2}
           innerHeight={innerHeight}
         />
-        <g ref={brushRef}/>
       </g>
     </>
   );

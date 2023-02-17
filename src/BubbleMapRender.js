@@ -1,14 +1,14 @@
 import { useMapData } from './useMapData';
 import { useData } from './useData';
-import { BubbleMap } from './BubbleMap/index.js';
-import { BubbleMapDog } from './BubbleMap Dog/index.js';
-import { BubbleMapCat } from './BubbleMap Cat/index.js';
-import { BubbleMapSquirrel } from './BubbleMap Squirrel/index.js';
-import { BubbleMapRabbit } from './BubbleMap Rabbit/index.js';
-import { BubbleMapDolphin } from './BubbleMap Dolphin/index.js';
-import { BubbleMapWhale } from './BubbleMap Whale/index.js';
-import { BubbleMapElephant } from './BubbleMap Elephant/index.js';
-import { BubbleMapSkinwalker } from './BubbleMap Skinwalker/index.js';
+import { BubbleMap } from './BubbleMaps/BubbleMap All/index.js';
+import { BubbleMapDog } from './BubbleMaps/BubbleMap Dog/index.js';
+import { BubbleMapCat } from './BubbleMaps/BubbleMap Cat/index.js';
+import { BubbleMapSquirrel } from './BubbleMaps/BubbleMap Squirrel/index.js';
+import { BubbleMapRabbit } from './BubbleMaps/BubbleMap Rabbit/index.js';
+import { BubbleMapDolphin } from './BubbleMaps/BubbleMap Dolphin/index.js';
+import { BubbleMapWhale } from './BubbleMaps/BubbleMap Whale/index.js';
+import { BubbleMapElephant } from './BubbleMaps/BubbleMap Elephant/index.js';
+import { BubbleMapSkinwalker } from './BubbleMaps/BubbleMap Skinwalker/index.js';
 import { DateHistogram } from './DateHistogram/index.js';
 import './General.css';
 import { useState, useEffect } from 'react';
@@ -90,6 +90,8 @@ function BubbleMapRender() {
     const date = xValue(d);
     return date > brushExtent[0] && date < brushExtent[1]; //sets date range between start point and end point of brush
   }) : data;
+
+  //THE FOLLOWING CODE IS LIKELY INCREDIBLY INEFFICIENT.
 
   if (allVisible === true) {
   return (

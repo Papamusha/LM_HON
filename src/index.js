@@ -1,6 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import BubbleMapRender from './BubbleMapRender';
+import App from './App';
 
-const rootElement = document.getElementById('root');
-ReactDOM.render(<BubbleMapRender />, rootElement);
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);

@@ -23,7 +23,7 @@ const Dropdown = ({ options, id, selectedValue, onSelectedValueChange }) => (
   </select>
   );
 
-const initialValue = 'dogs';
+const initialValue = 'all';
 
 const options = [
   { value: 'all', label: 'All' },

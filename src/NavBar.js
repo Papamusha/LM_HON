@@ -14,7 +14,7 @@ function NavMain() {
             <Nav.Link href="/bubblemap">BubbleMaps</Nav.Link>
             <Nav.Link href="/scatter">Scatter Graphs</Nav.Link>
             <Nav.Link href="/pie">Pie Charts</Nav.Link>
-            <Nav.Link href="/barchart">Bar Charts</Nav.Link>
+            <Nav.Link href="/bar">Bar Charts</Nav.Link>
             <Nav.Link href="/line">Line Charts</Nav.Link>
             <Nav.Link href="/multiline">Multi-line Charts</Nav.Link>
             <Nav.Link href="/choropleth">Choropleths</Nav.Link>

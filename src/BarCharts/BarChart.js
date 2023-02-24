@@ -1,9 +1,11 @@
 import React from "react";
 import { scaleBand, scaleLinear, max, format, mean } from "d3";
-import { useData } from "../useData";
+import { useData } from "../useDataAverages";
 import { AxisBottom } from "./AxisBottom";
 import { AxisLeft } from "./AxisLeft";
 import { Marks } from "./Marks";
+import "../General.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const width = 960;
 const height = 500;
@@ -16,10 +18,8 @@ const xAxisLabelOffset = 50;
 
 const BarChart = () => {
   const data = useData();
-  const filteredData = data;
 
   console.log(data);
-  console.log(filteredData);
 
   if (!data) {
     return <pre>Loading...</pre>;
@@ -29,8 +29,9 @@ const BarChart = () => {
   const innerWidth = width - margin.left - margin.right;
 
   const yValue = (d) => d["hashtag"];
-  const xValue = (d => d["hashtagCount"]);
+  const xValue = (d) => d["hashtagCount"];
 
+  //formatting for Y values, changes value displayed on ticks to thousands.
   const siFormat = format(".2s");
   const xAxisTickFormat = (tickValue) => siFormat(tickValue).replace("G", "B");
 
@@ -45,7 +46,9 @@ const BarChart = () => {
 
   return (
     <header>
-      <h1>This Chart is incredibly inefficient.</h1>
+      <h2>
+        This bar chart displays the average hashtag count values recorded for each category.
+      </h2>
       <svg width={width} height={height}>
         <g transform={`translate(${margin.left},${margin.top})`}>
           <AxisBottom
@@ -63,7 +66,7 @@ const BarChart = () => {
             Hashtag Count
           </text>
           <Marks
-            data={filteredData}
+            data={data}
             xScale={xScale}
             yScale={yScale}
             xValue={xValue}

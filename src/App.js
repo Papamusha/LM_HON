@@ -3,9 +3,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import NavMain from "./NavBar";
 import GuidePage from "./GuidePage";
-import BubbleMapRender from './BubbleMapRender';
+import BubbleMapRender from './BubbleMaps/BubbleMapRender';
 import BarChart from "./BarCharts/BarChart.js";
-import PieChart from "./PieCharts/PieChart";
+import ScatterGraph from "./ScatterGraph/index";
 
 function App() {
   return (
@@ -20,7 +20,7 @@ function App() {
             <Route path="/bubblemap" element={<BubbleMapRender />} />
             <Route path="/guidepage" element={<GuidePage />} />
             <Route path="/bar" element={<BarChart />} />
-            <Route path="/pie" element={<PieChart />} />
+            <Route path="scatter" element={<ScatterGraph />} />
           </Routes>
         </BrowserRouter>
       </div>

@@ -4,8 +4,9 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import NavMain from "./NavBar";
 import GuidePage from "./GuidePage";
 import BubbleMapRender from './BubbleMaps/BubbleMapRender';
-import BarChart from "./BarCharts/BarChart.js";
+import BarChart from "./BarChart/BarChart.js";
 import ScatterGraph from "./ScatterGraph/index";
+import LineChart from "./LineChart/index";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             <Route path="/guidepage" element={<GuidePage />} />
             <Route path="/bar" element={<BarChart />} />
             <Route path="scatter" element={<ScatterGraph />} />
+            <Route path="line" element={<LineChart />} />
           </Routes>
         </BrowserRouter>
       </div>

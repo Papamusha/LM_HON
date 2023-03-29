@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { scaleLinear, scaleTime, max, timeFormat, extent } from 'd3';
 import { useData } from '../useData';
+import { useDataCat } from '../useDataCat';
 import { AxisBottom } from './AxisBottom';
 import { AxisLeft } from './AxisLeft';
 import { Marks } from './AllMarks';
@@ -14,14 +15,12 @@ import { WhaleMarks } from './WhaleMarks';
 import { ElephantMarks } from './ElephantMarks';
 import { SkinwalkerMarks } from './SkinwalkerMarks';
 import { useState, useEffect } from 'react';
-
+import { XAxis } from './XAxis';
 
 
 const LineChart = () => {
   const data = useData();
-
-  //const filteredCat = data.filter((d) => {return d['hashtag'] === 'cats'});
-  //console.log(filteredCat);
+  const dataCat = useDataCat();
   
   const Dropdown = ({ options, id, selectedValue, onSelectedValueChange }) => (
     <select id={id} onChange={event => onSelectedValueChange(event.target.value)}>
@@ -81,9 +80,8 @@ const options = [
       console.log('Elephant = ' + elephantVisible);
       console.log('Skinwalker = ' + skinwalkerVisible);
 
-  
-const width = 960;
-const height = 500;
+const width = 1700;
+const height = 800;
 const margin = { top: 20, right: 30, bottom: 65, left: 90 };
 const xAxisLabelOffset = 54;
 const yAxisLabelOffset = 50;
@@ -94,6 +92,7 @@ const yAxisLabelOffset = 50;
 
   const innerHeight = height - margin.top - margin.bottom;
   const innerWidth = width - margin.left - margin.right;
+
 
   const xValue = d => d['date'];
   const xAxisLabel = 'Time';
@@ -112,23 +111,23 @@ const yAxisLabelOffset = 50;
     .domain(extent(data, yValue))
     .range([innerHeight, 0]);
 
-    
-
   if ( allVisible === true ) {
 
   return (
 
     <header>
-      <h1>Scatter Graph - All</h1>
+      <h1>Line Chart - All</h1>
         <div className="dropdown-container">
             <label for="hashtag-select">Choose a search term:</label>
               <Dropdown id="hashtag-select"
               options={options} selectedValue={selectedValue} onSelectedValueChange={setSelectedValue}
-              />
+              /> <br/>
+              <text>This currently doesn't work right. Dots represent the points that the line are supposed to follow.</text>
         </div>
 
     <svg width={width} height={height}>
       <g transform={`translate(${margin.left},${margin.top})`}>
+      <XAxis xScale={xScale} innerHeight={innerHeight} />
         <AxisBottom
           xScale={xScale}
           innerHeight={innerHeight}
@@ -171,7 +170,7 @@ if ( dogVisible === true ) {
   return (
 
     <header>
-      <h1>Scatter Graph - Dogs</h1>
+      <h1>Line Chart - Dogs</h1>
         <div className="dropdown-container">
             <label for="hashtag-select">Choose a search term:</label>
               <Dropdown id="hashtag-select"
@@ -220,13 +219,11 @@ if ( dogVisible === true ) {
 };
 
 if ( catVisible === true ) {
-  
-  //data = data.filter(checkCat('cats'));
 
   return (
 
     <header>
-      <h1>Scatter Graph - Cats</h1>
+      <h1>Line Chart - Cats</h1>
         <div className="dropdown-container">
             <label for="hashtag-select">Choose a search term:</label>
               <Dropdown id="hashtag-select"
@@ -236,6 +233,7 @@ if ( catVisible === true ) {
 
     <svg width={width} height={height}>
       <g transform={`translate(${margin.left},${margin.top})`}>
+      <XAxis xScale={xScale} innerHeight={innerHeight} />
         <AxisBottom
           xScale={xScale}
           innerHeight={innerHeight}
@@ -260,7 +258,7 @@ if ( catVisible === true ) {
           {xAxisLabel}
         </text>
         <CatMarks
-          data={data}
+          data={dataCat}
           xScale={xScale}
           yScale={yScale}
           xValue={xValue}
@@ -278,7 +276,7 @@ if ( squirrelVisible === true ) {
   return (
 
     <header>
-      <h1>Scatter Graph - Squirrels</h1>
+      <h1>Line Chart - Squirrels</h1>
         <div className="dropdown-container">
             <label for="hashtag-select">Choose a search term:</label>
               <Dropdown id="hashtag-select"
@@ -330,7 +328,7 @@ if ( rabbitVisible === true ) {
   return (
 
     <header>
-      <h1>Scatter Graph - Rabbits</h1>
+      <h1>Line Chart - Rabbits</h1>
         <div className="dropdown-container">
             <label for="hashtag-select">Choose a search term:</label>
               <Dropdown id="hashtag-select"
@@ -382,7 +380,7 @@ if ( dolphinVisible === true ) {
   return (
 
     <header>
-      <h1>Scatter Graph - Dolphins</h1>
+      <h1>Line Chart - Dolphins</h1>
         <div className="dropdown-container">
             <label for="hashtag-select">Choose a search term:</label>
               <Dropdown id="hashtag-select"
@@ -434,7 +432,7 @@ if ( whaleVisible === true ) {
   return (
 
     <header>
-      <h1>Scatter Graph - Whales</h1>
+      <h1>Line Chart - Whales</h1>
         <div className="dropdown-container">
             <label for="hashtag-select">Choose a search term:</label>
               <Dropdown id="hashtag-select"
@@ -486,7 +484,7 @@ if ( elephantVisible === true ) {
   return (
 
     <header>
-      <h1>Scatter Graph - Elephants</h1>
+      <h1>Line Chart - Elephants</h1>
         <div className="dropdown-container">
             <label for="hashtag-select">Choose a search term:</label>
               <Dropdown id="hashtag-select"
@@ -538,7 +536,7 @@ if ( skinwalkerVisible === true ) {
   return (
 
     <header>
-      <h1>Scatter Graph - Skinwalkers</h1>
+      <h1>Line Chart - Skinwalkers</h1>
         <div className="dropdown-container">
             <label for="hashtag-select">Choose a search term:</label>
               <Dropdown id="hashtag-select"

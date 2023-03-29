@@ -18,7 +18,14 @@ export const useData = () => {
   useEffect(() => {
     csv(csvUrl, row).then(setData);
   }, []);
-  
+
+  if (!data) {
+    return console.log('data loading...');
+  }
+
+  data.sort(function(a, b){return a.date - b.date});
+
 console.log(data);
   return data;
 };
+

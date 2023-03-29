@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { scaleLinear, scaleTime, max, timeFormat, extent } from 'd3';
 import { useData } from '../useData';
+import { useDataCat } from '../useDataCat';
 import { AxisBottom } from './AxisBottom';
 import { AxisLeft } from './AxisLeft';
 import { Marks } from './AllMarks';
@@ -95,7 +96,7 @@ const yAxisLabelOffset = 50;
   const xValue = d => d['date'];
   const xAxisLabel = 'Time';
 
-  const yValue = d => d['hashtagCount'];
+  const yValue = d => d.hashtagCount;
   const yAxisLabel = 'hashtag';
 
   const xAxisTickFormat = timeFormat('%m/%d/%Y');

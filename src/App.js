@@ -6,7 +6,8 @@ import GuidePage from "./GuidePage";
 import BubbleMapRender from './BubbleMaps/BubbleMapRender';
 import BarChart from "./BarChart/BarChart.js";
 import ScatterGraph from "./ScatterGraph/index";
-import LineChart from "./LineChart/index";
+import LineChartDeploy from "./LineChart/index";
+import MultiLineChart from "./MultiLineChart";
 
 function App() {
   return (
@@ -22,7 +23,8 @@ function App() {
             <Route path="/guidepage" element={<GuidePage />} />
             <Route path="/bar" element={<BarChart />} />
             <Route path="scatter" element={<ScatterGraph />} />
-            <Route path="line" element={<LineChart />} />
+            <Route path="line" element={<LineChartDeploy />} />
+            <Route path="multiline" element={<MultiLineChart />} />
           </Routes>
         </BrowserRouter>
       </div>

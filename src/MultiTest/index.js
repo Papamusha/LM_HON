@@ -5,11 +5,6 @@ import { useData } from '../Data/useData';
 import { useDataCat } from '../useDataCat';
 import { useDataDog } from '../Data/useDataDog';
 import { useDataDolphin } from '../Data/useDataDolphin';
-import { useDataElephant } from '../Data/useDataElephant';
-import { useDataRabbit } from '../Data/useDataRabbit';
-import { useDataSkinwalker } from '../Data/useDataSkinwalker';
-import { useDataSquirrel } from '../Data/useDataSquirrel';
-import { useDataWhale } from '../Data/useDataWhale';
 import { AxisBottom } from './AxisBottom';
 import { AxisLeft } from './AxisLeft';
 import { Marks } from './AllMarks';
@@ -30,11 +25,6 @@ const MultiLineChart = () => {
   const dataCat = useDataCat();
   const dataDog = useDataDog();
   const dataDolphin = useDataDolphin();
-  const dataElephant = useDataElephant();
-  //const dataRabbit = useDataRabbit();
-  //const dataSkinwalker = useDataSkinwalker();
-  //const dataSquirrel = useDataSquirrel();
-  //const dataWhale = useDataWhale();
 
 const width = 1700;
 const height = 800;
@@ -125,18 +115,16 @@ const yAxisLabelOffset = 50;
           Format={xAxisTickFormat}
           circleRadius={5}
         />
-        //<ElephantMarks
-          data={dataElephant}
-          xScale={xScale}
-          yScale={yScale}
-          xValue={xValue}
-          yValue={yValue}
-          Format={xAxisTickFormat}
-          circleRadius={5}
-        />
       </g>
-      
     </svg>
+    <br/>
+ 
+    <span class="legend-color-1">Cat </span> &nbsp; &nbsp; &nbsp; 
+    <span class="legend-color-2">Dog</span> &nbsp; &nbsp; &nbsp; 
+    <span class="legend-color-3">Dolphin</span>
+
+    <h3>The following chart is only capable of using a maximum of 3 datasets.</h3>
+
     </header>
   );
 };

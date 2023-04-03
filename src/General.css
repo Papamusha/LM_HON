@@ -95,3 +95,27 @@ circle {
   stroke: black;
   stroke-width: 2px;
 }
+
+.legend-color-1 {
+  height: 25px;
+  width: 25px;
+  background-color: #17C82C;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.legend-color-2 {
+  height: 25px;
+  width: 25px;
+  background-color: #25DDE6;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.legend-color-3 {
+  height: 25px;
+  width: 25px;
+  background-color: #DD25E6;
+  border-radius: 50%;
+  display: inline-block;
+}

@@ -1,5 +1,5 @@
-import { useMapData } from '../useMapData';
-import { useData } from '../useData';
+import { useMapData } from '../Data/useMapData';
+import { useData } from '../Data/useData';
 import { BubbleMap } from './BubbleMap All/index.js';
 import { BubbleMapDog } from './BubbleMap Dog/index.js';
 import { BubbleMapCat } from './BubbleMap Cat/index.js';

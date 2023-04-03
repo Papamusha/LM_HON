@@ -1,14 +1,12 @@
-// Ignore this file, it is unused.
-// This file only exists because eslint throws an error without it. I do not know why
-
 import { useState, useEffect } from 'react';
 import { csv } from 'd3';
 
 const csvUrl =
-  'https://gist.githubusercontent.com/Papamusha/cb1f87b0bd5697c7981afe4efac51966/raw/bfe79b4b0b00622d7924f520c3bdb89a2b760685/smhashlocavg.txt';
+  'https://gist.githubusercontent.com/Papamusha/9369db1a13fe318d3435de5a68357d59/raw/7c737f9dddf81165673b8237093a969b0a0be3ed/gistfile1.txt';
 
 const row = d => {
   d['hashtag'] = d['hashtag'];
+  d.coordinates = d['coordinates'].split(',').map(d => +d).reverse();
   d['hashtagCount'] = +d['hashtagCount'];
   d['date'] = new Date(d['date']);
   return d;
@@ -20,7 +18,14 @@ export const useData = () => {
   useEffect(() => {
     csv(csvUrl, row).then(setData);
   }, []);
-  
+
+  if (!data) {
+    return console.log('data loading...');
+  }
+
+  data.sort(function(a, b){return a.date - b.date});
+
 console.log(data);
   return data;
 };
+

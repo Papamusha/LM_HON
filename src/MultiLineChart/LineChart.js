@@ -3,8 +3,8 @@ import { scaleTime, extent, scaleLog, max, line, timeFormat } from 'd3';
 import { XAxis } from './XAxis';
 import { YAxis } from './YAxis';
 
-const xValue = d => d['date'];
-const yValue = d => d['hashtagCount'];
+const xValue = d => d.date;
+const yValue = d => d.deathTotal;
 
 const margin = { top: 50, right: 40, bottom: 80, left: 100 };
 
@@ -15,7 +15,7 @@ export const LineChart = ({ data, width, height }) => {
   const innerHeight = height - margin.top - margin.bottom;
 
   const allData = data.reduce(
-    (accumulator, hashtag) => accumulator.concat(hashtag),
+    (accumulator, countryTimeseries) => accumulator.concat(countryTimeseries),
     []
   );
 
@@ -40,25 +40,25 @@ export const LineChart = ({ data, width, height }) => {
       <g transform={`translate(${margin.left},${margin.top})`}>
         <XAxis xScale={xScale} innerHeight={innerHeight} />
         <YAxis yScale={yScale} innerWidth={innerWidth} />
-        {data.map(hashtag => {
-          console.log(yValue(hashtag[0]));
+        {data.map(countryTimeseries => {
+          console.log(yValue(countryTimeseries[0]));
           const r = Math.random() * 255;
           const g = Math.random() * 255;
           const b = Math.random() * 255;
           const strokeColor = `rgb(${r},${g},${b})`;
           return (
-            <path stroke={strokeColor} d={lineGenerator(hashtag)} />
+            <path stroke={strokeColor} d={lineGenerator(countryTimeseries)} />
           );
         })}
         <text transform={`translate(${innerWidth / 2},0)`} text-anchor="middle">
-          Hashtag popularity over time (from dataset)
+          Global Coronavirus Deaths Over Time by Country
         </text>
         <text
           className="axis-label"
           transform={`translate(-40,${innerHeight / 2}) rotate(-90)`}
           text-anchor="middle"
         >
-          Hashtag Count
+          Cumulative Deaths
         </text>
         <text
           className="axis-label"

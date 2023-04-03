@@ -1,4 +1,6 @@
-export const CatMarks = ({
+import { line } from 'd3';
+
+export const Marks = ({
   data,
   xScale,
   yScale,
@@ -8,12 +10,11 @@ export const CatMarks = ({
   circleRadius
 }) => (
   <g className="marks">
-    {data.map(d => {
-      if (d['hashtag'] === 'cats')
+      <path fill="none" stroke="#0b4e52" d={line().x(d => xScale(xValue(d))).y(d => yScale(yValue(d)))(data)} />    
+      {data.map(d => {
       return <circle cx={xScale(xValue(d))} cy={yScale(yValue(d))} r={circleRadius} >
         <title>{Format(xValue(d))}</title>
       </circle>
-      console.log(d['hashtag']);
     })}
   </g>
 );

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { scaleLinear, scaleTime, max, timeFormat, extent } from 'd3';
-import { useData } from '../useData';
+import { useData } from '../Data/useData';
 import { useDataCat } from '../useDataCat';
 import { AxisBottom } from './AxisBottom';
 import { AxisLeft } from './AxisLeft';

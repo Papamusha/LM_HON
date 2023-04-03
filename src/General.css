@@ -67,14 +67,31 @@ circle {
   opacity: 0.3;
 }
 
+circle {
+  fill: #137B80;
+  opacity: 0.3;
+}
+
+.circleDog {
+  fill: #25DDE6;
+  opacity: 0.3;
+}
+
 .tick text {
   fill: #635F5D;
   font-size: 0.5em;
 }
+
 .mark {
   fill: #137B80;
 }
+
 .axis-label {
   font-size: 0.5em;
   fill: #635F5D;
+}
+
+.marker-line {
+  stroke: black;
+  stroke-width: 2px;
 }

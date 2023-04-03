@@ -1,6 +1,3 @@
-// Ignore this file, it is unused.
-// This file only exists because eslint throws an error without it. I do not know why
-
 import { useState, useEffect } from 'react';
 import { csv } from 'd3';
 

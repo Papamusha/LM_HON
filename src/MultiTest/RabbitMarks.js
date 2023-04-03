@@ -1,0 +1,13 @@
+import { line } from 'd3';
+
+export const RabbitMarks = ({
+  data,
+  xScale,
+  yScale,
+  xValue,
+  yValue
+}) => (
+  <g className="marks">
+    <path fill="none" stroke="#25DDE6" d={line().x(d => xScale(xValue(d))).y(d => yScale(yValue(d)))(data)} />  
+  </g>
+);

@@ -1,6 +1,3 @@
-// Ignore this file, it is unused.
-// This file only exists because eslint throws an error without it. I do not know why
-
 import { useState, useEffect } from 'react';
 import { csv } from 'd3';
 
@@ -13,7 +10,7 @@ import { csv } from 'd3';
 //one for all data, one for averages data, and one for each hashtag category (eight).
 
 const csvUrl =
-  'https://gist.githubusercontent.com/Papamusha/9d86882e9eaf7e200f17dd8ed5394cfd/raw/7fd45334977715e2ea721943a6949e26f57025dc/smhashloc-cat-only.csv';
+  'https://gist.githubusercontent.com/Papamusha/282566325e91489132672568980b3b34/raw/09d03c050bb60d0a163425b3b89e946050686c28/smhashloc-dolphin-only.csv';
 
 const row = d => {
   d['hashtag'] = d['hashtag'];
@@ -23,7 +20,7 @@ const row = d => {
   return d;
 };
 
-export const useDataCat = () => {
+export const useDataDolphin = () => {
   const [data, setData] = useState(null);
 
   useEffect(() => {

@@ -7,7 +7,7 @@ import BubbleMapRender from './BubbleMaps/BubbleMapRender';
 import BarChart from "./BarChart/BarChart.js";
 import ScatterGraph from "./ScatterGraph/index";
 import LineChartDeploy from "./LineChart/index";
-import MultiLineChart from "./MultiLineChart";
+import MultiLineChart from "./MultiTest/index.js";
 
 function App() {
   return (

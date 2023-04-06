@@ -1,5 +1,6 @@
 import { useMapData } from '../Data/useMapData';
 import { useData } from '../Data/useData';
+import { useDataAv } from '../Data/useData copy';
 import { BubbleMap } from './BubbleMap All/index.js';
 import { BubbleMapDog } from './BubbleMap Dog/index.js';
 import { BubbleMapCat } from './BubbleMap Cat/index.js';
@@ -12,6 +13,7 @@ import { BubbleMapSkinwalker } from './BubbleMap Skinwalker/index.js';
 import { DateHistogram } from '../DateHistogram/index.js';
 import '../General.css';
 import { useState, useEffect } from 'react';
+import { mean, sum } from 'd3';
 
 const Dropdown = ({ options, id, selectedValue, onSelectedValueChange }) => (
   <select id={id} onChange={event => onSelectedValueChange(event.target.value)}>
@@ -36,6 +38,8 @@ const options = [
   { value: 'elephants', label: 'Elephant' },
   { value: 'skinwalkers', label: 'Skinwalker' },
 ];
+
+
 
 function BubbleMapRender() {
   let [selectedValue, setSelectedValue] = useState(initialValue);
@@ -79,11 +83,37 @@ function BubbleMapRender() {
   const dateHistogramSize = 0.2; //sets size of histogram
   const [brushExtent, setBrushExtent] = useState(); // values for brush range
   const xValue = d => d['date']; // xValue is called here instead of index.js in DateHistogram for data filtering
+  const dataAv = useDataAv();
+  console.log(dataAv);
+  
+
 
   //this statement places a loading screen if data is not yet loaded
   if (!map || !data) { 
     return <pre>Loading...</pre>;
   }
+
+  const averageAll = Math.round(mean(dataAv));
+    console.log(averageAll);
+
+  function handleAvAll() {
+  if (averageAll < 50000) {
+    <h5>This value displays that overall the topic is of a small-scale.</h5>
+  } else 
+  if (averageAll < 100000) {
+    <h5>This value displays that overall the topic is approaching the point where it is considered of a medium scale.</h5>
+  } else 
+  if (averageAll < 200000) {
+    <h5>This value displays that overall the topic is of a medium scale.</h5>
+  } else 
+  if (averageAll < 400000) {
+    <h5>This value displays that overall the topic is approaching the point where it is considered large-scale.</h5>
+  }
+  else {
+    <h5>This value displays that overall the topic is of a large-scale.</h5>
+  }
+}
+
 
   //data filtering
   const filteredData = brushExtent ? data.filter(d => { 
@@ -111,6 +141,9 @@ function BubbleMapRender() {
       </g>
     </svg>
     <h3> Use the Histogram above to select time-frame of data.</h3>
+    <br/>
+    <h5>Average Value: {averageAll}</h5> 
+    {handleAvAll(averageAll)}
     </header>
   )
 };
@@ -133,6 +166,7 @@ function BubbleMapRender() {
       </g>
     </svg>
     <h3> Use the Histogram above to select time-frame of data.</h3>
+    <handleAvAll></handleAvAll>
     </header>
   )
 };

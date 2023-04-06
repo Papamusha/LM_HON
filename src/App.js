@@ -8,8 +8,10 @@ import BarChart from "./BarChart/BarChart.js";
 import ScatterGraph from "./ScatterGraph/index";
 import LineChartDeploy from "./LineChart/index";
 import MultiLineChart from "./MultiTest/index.js";
+import Choropleth from "./Choropleth";
 
 function App() {
+  
   return (
     <>
     <NavMain />
@@ -25,6 +27,7 @@ function App() {
             <Route path="scatter" element={<ScatterGraph />} />
             <Route path="line" element={<LineChartDeploy />} />
             <Route path="multiline" element={<MultiLineChart />} />
+            <Route path="choropleth" element={<Choropleth />} />
           </Routes>
         </BrowserRouter>
       </div>

@@ -13,7 +13,11 @@ import { BubbleMapSkinwalker } from './BubbleMap Skinwalker/index.js';
 import { DateHistogram } from '../DateHistogram/index.js';
 import '../General.css';
 import { useState, useEffect } from 'react';
-import { mean, sum } from 'd3';
+import { mean } from 'd3';
+import { SmallScale } from './SmallScale';
+import { LowerMedScale } from './LowerMedScale';
+import { MediumScale } from './MedScale';
+import { LargeScale } from './LargeScale';
 
 const Dropdown = ({ options, id, selectedValue, onSelectedValueChange }) => (
   <select id={id} onChange={event => onSelectedValueChange(event.target.value)}>
@@ -93,27 +97,23 @@ function BubbleMapRender() {
     return <pre>Loading...</pre>;
   }
 
+  //const averageAll = 12;
   const averageAll = Math.round(mean(dataAv));
     console.log(averageAll);
 
-  function handleAvAll() {
-  if (averageAll < 50000) {
-    <h5>This value displays that overall the topic is of a small-scale.</h5>
-  } else 
-  if (averageAll < 100000) {
-    <h5>This value displays that overall the topic is approaching the point where it is considered of a medium scale.</h5>
-  } else 
-  if (averageAll < 200000) {
-    <h5>This value displays that overall the topic is of a medium scale.</h5>
-  } else 
-  if (averageAll < 400000) {
-    <h5>This value displays that overall the topic is approaching the point where it is considered large-scale.</h5>
-  }
-  else {
-    <h5>This value displays that overall the topic is of a large-scale.</h5>
-  }
-}
-
+  function averageVerdict(averageAll) {
+      if (averageAll < 50000) {
+        averageVerdict = <SmallScale />
+      } else 
+      if (averageAll < 250000) {
+        averageVerdict = <LowerMedScale />
+      } else 
+      if (averageAll < 500000) {
+        averageVerdict = <MediumScale />
+      } else 
+      if (averageAll > 750000) {
+        averageVerdict = <LargeScale />
+      }};
 
   //data filtering
   const filteredData = brushExtent ? data.filter(d => { 
@@ -123,7 +123,7 @@ function BubbleMapRender() {
 
   //THE FOLLOWING CODE IS LIKELY INCREDIBLY INEFFICIENT.
 
-  if (allVisible === true) {
+  if (allVisible === true && averageAll < 50000) {
   return (
     <header>
       <h1>Bubble Map - All</h1>
@@ -141,9 +141,84 @@ function BubbleMapRender() {
       </g>
     </svg>
     <h3> Use the Histogram above to select time-frame of data.</h3>
-    <br/>
+    <h4>The Histogram also displays the relevancy of data over time.</h4>
     <h5>Average Value: {averageAll}</h5> 
-    {handleAvAll(averageAll)}
+    <SmallScale />
+    </header>
+  )
+};
+
+if (allVisible === true && averageAll < 250000) {
+  return (
+    <header>
+      <h1>Bubble Map - All</h1>
+      <div className="dropdown-container">
+      <label for="hashtag-select">Choose a search term:</label>
+      <Dropdown id="hashtag-select"
+        options={options} selectedValue={selectedValue} onSelectedValueChange={setSelectedValue}
+      />
+    </div>
+    <svg width={width} height={height}> 
+      <BubbleMap data={data} filteredData={filteredData} map={map} />
+      <g transform={`translate(0, ${height - dateHistogramSize * height})`}>
+        <DateHistogram data={data} width={width} height={dateHistogramSize * height} setBrushExtent={setBrushExtent} xValue={xValue}
+        />
+      </g>
+    </svg>
+    <h3> Use the Histogram above to select time-frame of data.</h3>
+    <h4>The Histogram also displays the relevancy of data over time.</h4>
+    <h5>Average Value: {averageAll}</h5> 
+    <LowerMedScale />
+    </header>
+  )
+};
+
+if (allVisible === true && averageAll < 500000) {
+  return (
+    <header>
+      <h1>Bubble Map - All</h1>
+      <div className="dropdown-container">
+      <label for="hashtag-select">Choose a search term:</label>
+      <Dropdown id="hashtag-select"
+        options={options} selectedValue={selectedValue} onSelectedValueChange={setSelectedValue}
+      />
+    </div>
+    <svg width={width} height={height}> 
+      <BubbleMap data={data} filteredData={filteredData} map={map} />
+      <g transform={`translate(0, ${height - dateHistogramSize * height})`}>
+        <DateHistogram data={data} width={width} height={dateHistogramSize * height} setBrushExtent={setBrushExtent} xValue={xValue}
+        />
+      </g>
+    </svg>
+    <h3> Use the Histogram above to select time-frame of data.</h3>
+    <h4>The Histogram also displays the relevancy of data over time.</h4>
+    <h5>Average Value: {averageAll}</h5> 
+    <MediumScale />
+    </header>
+  )
+};
+
+if (allVisible === true && averageAll > 500000) {
+  return (
+    <header>
+      <h1>Bubble Map - All</h1>
+      <div className="dropdown-container">
+      <label for="hashtag-select">Choose a search term:</label>
+      <Dropdown id="hashtag-select"
+        options={options} selectedValue={selectedValue} onSelectedValueChange={setSelectedValue}
+      />
+    </div>
+    <svg width={width} height={height}> 
+      <BubbleMap data={data} filteredData={filteredData} map={map} />
+      <g transform={`translate(0, ${height - dateHistogramSize * height})`}>
+        <DateHistogram data={data} width={width} height={dateHistogramSize * height} setBrushExtent={setBrushExtent} xValue={xValue}
+        />
+      </g>
+    </svg>
+    <h3> Use the Histogram above to select time-frame of data.</h3>
+    <h4>The Histogram also displays the relevancy of data over time.</h4>
+    <h5>Average Value: {averageAll}</h5> 
+    <LargeScale />
     </header>
   )
 };
@@ -166,7 +241,6 @@ function BubbleMapRender() {
       </g>
     </svg>
     <h3> Use the Histogram above to select time-frame of data.</h3>
-    <handleAvAll></handleAvAll>
     </header>
   )
 };

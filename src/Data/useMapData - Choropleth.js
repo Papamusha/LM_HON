@@ -20,4 +20,3 @@ export const useMapData = () => {
 
   return data;
 };
-

@@ -10,7 +10,7 @@ import { csv } from 'd3';
 //one for all data, one for averages data, and one for each hashtag category (eight).
 
 const csvUrl =
-  'https://gist.githubusercontent.com/Papamusha/9d86882e9eaf7e200f17dd8ed5394cfd/raw/7fd45334977715e2ea721943a6949e26f57025dc/smhashloc-cat-only.csv';
+  'https://gist.githubusercontent.com/Papamusha/f4c09b1e2a943f09ab366bb9d452ea9b/raw/7a2b4f6d4b26bad134e72371e778a07b3d9e2164/smhashloc-whale-only.csv';
 
 const row = d => {
   d['hashtag'] = d['hashtag'];
@@ -20,7 +20,7 @@ const row = d => {
   return d;
 };
 
-export const useDataCat = () => {
+export const useDataWhale = () => {
   const [data, setData] = useState(null);
 
   useEffect(() => {

@@ -12,6 +12,7 @@ import { csv } from 'd3';
 const csvUrl =
   'https://gist.githubusercontent.com/Papamusha/9ea471fe744e988f23e0cb48898c3233/raw/74da3ebe886d7b12ca71ee58efddae394869f239/smhashloc-squirrel-only.csv';
 
+  //specify columns for each row
 const row = d => {
   d['hashtag'] = d['hashtag'];
   d.coordinates = d['coordinates'].split(',').map(d => +d).reverse();
@@ -23,14 +24,17 @@ const row = d => {
 export const useDataSquirrel = () => {
   const [data, setData] = useState(null);
 
+  //set data
   useEffect(() => {
     csv(csvUrl, row).then(setData);
   }, []);
 
+  //data loading message
   if (!data) {
     return console.log('data loading...');
   }
 
+  //sort data by date
   data.sort(function(a, b){return a.date - b.date});
 
 console.log(data);

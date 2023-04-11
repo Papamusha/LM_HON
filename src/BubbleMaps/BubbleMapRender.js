@@ -27,6 +27,8 @@ import { LowerMedScale } from './LowerMedScale';
 import { MediumScale } from './MedScale';
 import { LargeScale } from './LargeScale';
 
+//Dropdown which users use to select the search term to display
+//This is visible at all times on the bubblemap page
 const Dropdown = ({ options, id, selectedValue, onSelectedValueChange }) => (
   <select id={id} onChange={event => onSelectedValueChange(event.target.value)}>
     {options.map(({ value, label }) => (
@@ -36,6 +38,8 @@ const Dropdown = ({ options, id, selectedValue, onSelectedValueChange }) => (
     ))}
   </select>
   );
+
+  //set initial value and value options
 
 const initialValue = 'all';
 
@@ -54,8 +58,10 @@ const options = [
 
 
 function BubbleMapRender() {
+  //set dropdown value to initialValue
   let [selectedValue, setSelectedValue] = useState(initialValue);
 
+  //assign appropriate states to each option
   let [allVisible, setAllVisible] = useState(true);
   let [dogVisible, setDogVisible] = useState(false);
   let [catVisible, setCatVisible] = useState(false);
@@ -66,6 +72,7 @@ function BubbleMapRender() {
   let [elephantVisible, setElephantVisible] = useState(false);
   let [skinwalkerVisible, setSkinwalkerVisible] = useState(false);
 
+  //changes useState values depending on dropdown option selected.
   useEffect(() => {
     selectedValue === "all" ? setAllVisible(true) : setAllVisible(false);
     selectedValue === "dogs" ? setDogVisible(true) : setDogVisible(false);
@@ -88,6 +95,7 @@ function BubbleMapRender() {
   console.log('Elephant = ' + elephantVisible);
   console.log('Skinwalker = ' + skinwalkerVisible);
 
+  //call in all data
   const map = useMapData();
   const data = useData();
   const dataDog = useDataDog();
@@ -98,65 +106,25 @@ function BubbleMapRender() {
   const dataRabbit = useDataRabbit();
   const dataSquirrel = useDataSquirrel();
   const dataSkinwalker = useDataSkinwalker();
-  const width = 960; //width and height control size of area for svg
+  //width and height control size of area for svg
+  const width = 960; 
   const height = 700;
-  const dateHistogramSize = 0.2; //sets size of histogram
-  const [brushExtent, setBrushExtent] = useState(); // values for brush range
-  const xValue = d => d['date']; // xValue is called here instead of index.js in DateHistogram for data filtering
+  //sets size of histogram
+  const dateHistogramSize = 0.2; 
+  //values for brush range
+  const [brushExtent, setBrushExtent] = useState(); 
+  //xValue is called for data filtering
+  const xValue = d => d['date']; 
   const dataAv = useDataAv();
 
   //this statement places a loading screen if data is not yet loaded
   if (!map || !data) { 
+  //attempt to get the webpage to wait until the data is loaded (it doesn't work)
+    window.addEventListener('load', function() {
+      alert('loaded successfully');
+    })
     return <pre>Loading...</pre>;
   }
-
-  //const dataAvDog = dataAv.filter(d => d.hashtag === 'dogs');  
-  //const dataAvCat = dataAv.filter(d => d.hashtag === 'cats');  
-  //const dataAvDolphin = dataAv.filter(d => d.hashtag === 'dolphins');  
-  //const dataAvWhale = dataAv.filter(d => d.hashtag === 'whales');  
-  //const dataAvRabbit = dataAv.filter(d => d.hashtag === 'rabbits');  
-  //const dataAvSquirrel = dataAv.filter(d => d.hashtag === 'squirrels');  
-  //const dataAvSkinwalker = dataAv.filter(d => d.hashtag === 'skinwalkers');  
-  console.log(dataAv);
-
-  //average calculations
-  const averageAll =  Math.round(mean(dataAv));
-    console.log('AverageAll: ' + averageAll);
-
-    //this returns undefined
-    //const averageDog = Math.round(mean(dataAvDog));
-    const averageDog = 12;
-    console.log('AverageDog: ' + averageDog);
-
-    //this returns undefined
-    //const averageCat = Math.round(mean(dataAvCat));
-    const averageCat = 12;
-    console.log('AverageDog: ' + averageCat);
-
-    //this returns undefined
-    //const averageDolphin = Math.round(mean(dataAvDolphin));
-    const averageDolphin = 12;
-    console.log('AverageDog: ' + averageDolphin);
-
-    //this returns undefined
-    //const averageWhale = Math.round(mean(dataAvWhale));
-    const averageWhale = 12;
-    console.log('AverageDog: ' + averageWhale);
-
-    //this returns undefined
-    //const averageRabbit = Math.round(mean(dataAvRabbit));
-    const averageRabbit = 12;
-    console.log('AverageDog: ' + averageRabbit);
-
-    //this returns undefined
-    //const averageSquirrel = Math.round(mean(dataAvSquirrel));
-    const averageSquirrel = 12;
-    console.log('AverageDog: ' + averageSquirrel);
-
-    //this returns undefined
-    //const averageSkinwalker = Math.round(mean(dataAvSkinwalker));
-    const averageSkinwalker = 12;
-    console.log('AverageDog: ' + averageSkinwalker);
 
   //data filtering
   const filteredData = brushExtent ? data.filter(d => { 
@@ -164,8 +132,70 @@ function BubbleMapRender() {
     return date > brushExtent[0] && date < brushExtent[1]; //sets date range between start point and end point of brush
   }) : data;
 
-  //THE FOLLOWING CODE IS LIKELY INCREDIBLY INEFFICIENT.
+  //these attempts to filter dataAv to only include the relevant hashtag do not work
+  //they return undefined
+  var dataAvDog = dataAv.filter(d => d.hashtag === 'dogs');
+  var dataAvCat = dataAv.filter(d => d.hashtag === 'cats');  
+  var dataAvDolphin = dataAv.filter(d => d.hashtag === 'dolphins');  
+  var dataAvWhale = dataAv.filter(d => d.hashtag === 'whales');  
+  var dataAvRabbit = dataAv.filter(d => d.hashtag === 'rabbits');  
+  var dataAvSquirrel = dataAv.filter(d => d.hashtag === 'squirrels');  
+  var dataAvSkinwalker = dataAv.filter(d => d.hashtag === 'skinwalkers');  
+  console.log(dataAvDog);  
 
+  //setTimeout(() => {console.log('waiting 1 second');}, 1000);
+
+  //average calculations
+  //average values are vars set to a numerical value before attempting calculation, as it will attempt to perform the calculation before the data loads if they are not given a placeholder value beforehand.
+  var averageAll = 12;
+  var averageAll =  Math.round(mean(dataAv));
+    console.log('AverageAll: ' + averageAll);
+
+    //this returns undefined
+    var averageDog = 12;
+    var averageDog = Math.round(mean(dataAvDog));
+    console.log('AverageDog: ' + averageDog);
+
+    //this returns undefined
+    var averageCat = 12;
+    var averageCat = Math.round(mean(dataAvCat));
+    console.log('AverageDog: ' + averageCat);
+
+    //this returns undefined
+    var averageDolphin = 12;
+    var averageDolphin = Math.round(mean(dataAvDolphin));
+    console.log('AverageDog: ' + averageDolphin);
+
+    //this returns undefined
+    var averageWhale = 12;
+    var averageWhale = Math.round(mean(dataAvWhale));
+    console.log('AverageDog: ' + averageWhale);
+
+    //this returns undefined
+    var averageRabbit = 12;
+    var averageRabbit = Math.round(mean(dataAvRabbit));
+    console.log('AverageDog: ' + averageRabbit);
+
+    //this returns undefined
+    var averageSquirrel = 12;
+    var averageSquirrel = Math.round(mean(dataAvSquirrel));
+    console.log('AverageDog: ' + averageSquirrel);
+
+    //this returns undefined
+    var averageSkinwalker = 12;
+    var averageSkinwalker = Math.round(mean(dataAvSkinwalker));
+    console.log('AverageDog: ' + averageSkinwalker);
+
+  //THE FOLLOWING CODE IS LIKELY INCREDIBLY INEFFICIENT.
+   //the outcomes are determined on average values and value of dropdown
+   //There is a total of 36 possible outcomes, (9x4) 4 different outcomes depending on average value for each of the 9 search terms
+
+   //commentary only written on 1st outcome, only changes are data called and/or element called
+
+   //Dropdown creates the dropdown created above, used to select which term to use
+   //BubbleMap displays the map with data points
+   //DateHistogram displays the histogram that lets filter via brush in terms of date
+   //Average Value is displayed and an appropriate scale is shown.
   if (allVisible === true && averageAll < 50000) {
   return (
     <header>

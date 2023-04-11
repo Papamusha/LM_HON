@@ -3,6 +3,13 @@ import ReactDOM from 'react-dom';
 import { scaleLinear, scaleTime, max, timeFormat, extent } from 'd3';
 import { useData } from '../Data/useData';
 import { useDataCat } from '../useDataCat';
+import { useDataDog } from '../Data/useDataDog';
+import { useDataDolphin } from '../Data/useDataDolphin';
+import { useDataElephant } from '../Data/useDataElephant';
+import { useDataRabbit } from '../Data/useDataRabbit';
+import { useDataSkinwalker } from '../Data/useDataSkinwalker';
+import { useDataSquirrel } from '../Data/useDataSquirrel';
+import { useDataWhale } from '../Data/useDataWhale';
 import { AxisBottom } from './AxisBottom';
 import { AxisLeft } from './AxisLeft';
 import { Marks } from './AllMarks';
@@ -19,9 +26,20 @@ import { XAxis } from './XAxis';
 
 
 const LineChart = () => {
+  //set data
+  //all of these datasets are required for drawing a line that matches the filter, as filtering the value fed into the <path> element does not work
   const data = useData();
   const dataCat = useDataCat();
+  const dataDog = useDataDog();
+  const dataDolphin = useDataDolphin();
+  const dataElephant = useDataElephant();
+  const dataRabbit = useDataRabbit();
+  const dataSkinwalker = useDataSkinwalker();
+  const dataSquirrel = useDataSquirrel();
+  const dataWhale = useDataWhale();
   
+  //Dropdown which users use to select the search term to display
+  //This is visible at all times on the LineChart page
   const Dropdown = ({ options, id, selectedValue, onSelectedValueChange }) => (
     <select id={id} onChange={event => onSelectedValueChange(event.target.value)}>
         {options.map(({ value, label }) => (
@@ -32,6 +50,7 @@ const LineChart = () => {
     </select>
 );
 
+//set initial value and value options
 const initialValue = 'all';
 
 const options = [
@@ -46,8 +65,10 @@ const options = [
     { value: 'skinwalkers', label: 'Skinwalker' },
 ];
 
+    //set dropdown value to initialValue
     let [selectedValue, setSelectedValue] = useState(initialValue);
 
+    //assign appropriate states to each option
     let [allVisible, setAllVisible] = useState(true);
     let [dogVisible, setDogVisible] = useState(false);
     let [catVisible, setCatVisible] = useState(false);
@@ -58,6 +79,7 @@ const options = [
     let [elephantVisible, setElephantVisible] = useState(false);
     let [skinwalkerVisible, setSkinwalkerVisible] = useState(false);
 
+    //changes useState values depending on dropdown option selected
     useEffect(() => {
         selectedValue === "all" ? setAllVisible(true) : setAllVisible(false);
         selectedValue === "dogs" ? setDogVisible(true) : setDogVisible(false);
@@ -80,37 +102,47 @@ const options = [
       console.log('Elephant = ' + elephantVisible);
       console.log('Skinwalker = ' + skinwalkerVisible);
 
+//width and height control size of area for svg
 const width = 1700;
 const height = 800;
+//set margin and offsets
 const margin = { top: 20, right: 30, bottom: 65, left: 90 };
 const xAxisLabelOffset = 54;
 const yAxisLabelOffset = 50;
 
+//data loading message
   if (!data) {
     return <pre>Loading...</pre>;
   }
-
+// innerHeight and innerWidth take height and width and crop to fit the margin
   const innerHeight = height - margin.top - margin.bottom;
   const innerWidth = width - margin.left - margin.right;
 
 
+  //set X axis value to date and label
   const xValue = d => d['date'];
   const xAxisLabel = 'Time';
 
+  //set Y axis value to hashtag count and label
   const yValue = d => d['hashtagCount'];
   const yAxisLabel = 'hashtag';
 
   const xAxisTickFormat = timeFormat('%m/%d/%Y');
 
+  //set scale of X axis to time
   const xScale = scaleTime()
     .domain(extent(data, xValue))
     .range([0, innerWidth])
     .nice();
 
+    //set scale of Y axis to scale linearly
   const yScale = scaleLinear()
     .domain(extent(data, yValue))
     .range([innerHeight, 0]);
 
+  //Dropdown creates the dropdown created above, used to select which term to use
+  //AxisBottom and AxisLeft display the graphs axis
+  //Marks display data values (lines and points) 
   if ( allVisible === true ) {
 
   return (
@@ -204,7 +236,7 @@ if ( dogVisible === true ) {
           {xAxisLabel}
         </text>
         <DogMarks
-          data={data}
+          data={dataDog}
           xScale={xScale}
           yScale={yScale}
           xValue={xValue}
@@ -310,7 +342,7 @@ if ( squirrelVisible === true ) {
           {xAxisLabel}
         </text>
         <SquirrelMarks
-          data={data}
+          data={dataSquirrel}
           xScale={xScale}
           yScale={yScale}
           xValue={xValue}
@@ -362,7 +394,7 @@ if ( rabbitVisible === true ) {
           {xAxisLabel}
         </text>
         <RabbitMarks
-          data={data}
+          data={dataRabbit}
           xScale={xScale}
           yScale={yScale}
           xValue={xValue}
@@ -414,7 +446,7 @@ if ( dolphinVisible === true ) {
           {xAxisLabel}
         </text>
         <DolphinMarks
-          data={data}
+          data={dataDolphin}
           xScale={xScale}
           yScale={yScale}
           xValue={xValue}
@@ -466,7 +498,7 @@ if ( whaleVisible === true ) {
           {xAxisLabel}
         </text>
         <WhaleMarks
-          data={data}
+          data={dataWhale}
           xScale={xScale}
           yScale={yScale}
           xValue={xValue}
@@ -518,7 +550,7 @@ if ( elephantVisible === true ) {
           {xAxisLabel}
         </text>
         <ElephantMarks
-          data={data}
+          data={dataElephant}
           xScale={xScale}
           yScale={yScale}
           xValue={xValue}
@@ -570,7 +602,7 @@ if ( skinwalkerVisible === true ) {
           {xAxisLabel}
         </text>
         <SkinwalkerMarks
-          data={data}
+          data={dataSkinwalker}
           xScale={xScale}
           yScale={yScale}
           xValue={xValue}

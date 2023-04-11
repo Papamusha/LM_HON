@@ -12,6 +12,7 @@ import { csv } from 'd3';
 const csvUrl =
   'https://gist.githubusercontent.com/Papamusha/9d86882e9eaf7e200f17dd8ed5394cfd/raw/7fd45334977715e2ea721943a6949e26f57025dc/smhashloc-cat-only.csv';
 
+  //specify columns for each row
 const row = d => {
   d['hashtag'] = d['hashtag'];
   d.coordinates = d['coordinates'].split(',').map(d => +d).reverse();
@@ -23,14 +24,18 @@ const row = d => {
 export const useDataCat = () => {
   const [data, setData] = useState(null);
 
+  //set data
   useEffect(() => {
     csv(csvUrl, row).then(setData);
   }, []);
 
+  //data loading message
   if (!data) {
     return console.log('data loading...');
   }
 
+
+//sort data by date
   data.sort(function(a, b){return a.date - b.date});
 
 console.log(data);

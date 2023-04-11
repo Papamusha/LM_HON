@@ -7,6 +7,7 @@ export const Marks = ({
   Format,
   circleRadius
 }) => (
+  //circle draws data points on graph
   <g className="marks">
     {data.map(d => {
       return <circle cx={xScale(xValue(d))} cy={yScale(yValue(d))} r={circleRadius} >

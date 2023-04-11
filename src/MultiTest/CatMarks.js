@@ -7,6 +7,7 @@ export const CatMarks = ({
   xValue,
   yValue
 }) => (
+  //path draws line
   <g className="marksCat">
       <path fill="none" stroke="#17C82C" strokeWidth={4} d={line().x(d => xScale(xValue(d))).y(d => yScale(yValue(d)))(data)} />  
   </g>

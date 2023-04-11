@@ -1,5 +1,6 @@
 export const AxisBottom = ({ xScale, innerHeight, tickFormat, tickOffset = 3 }) =>
-  xScale.ticks().map(tickValue => (
+//xScale is the scale of the X axis on the chart  
+xScale.ticks().map(tickValue => (
     <g
       className="tick"
       key={tickValue}

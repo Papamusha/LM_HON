@@ -13,6 +13,9 @@ export const Marks = ({
 }) => (
   <g className="marks">
     { useMemo(() => //useMemo is used to stop the scale from being reloaded more than once for optimisation
+    //sphere draws map
+    //graticules draw land features
+    //data.map projects data points based on coordinates, filters data and returns the circles at data points of appropriate size
     <>
     <path className="sphere" d={path({ type: 'Sphere' })} />
     <path className="graticules" d={path(graticule())} />

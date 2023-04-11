@@ -19,8 +19,11 @@ import { useState, useEffect } from 'react';
 
 
 const ScatterGraph = () => {
+  //get data
   const data = useData();
 
+  //Dropdown which users use to select the search term to display
+//This is visible at all times on the scattergraph page
   const Dropdown = ({ options, id, selectedValue, onSelectedValueChange }) => (
     <select id={id} onChange={event => onSelectedValueChange(event.target.value)}>
         {options.map(({ value, label }) => (
@@ -31,6 +34,7 @@ const ScatterGraph = () => {
     </select>
 );
 
+//set initial value and value options
 const initialValue = 'all';
 
 const options = [
@@ -44,9 +48,10 @@ const options = [
     { value: 'elephants', label: 'Elephant' },
     { value: 'skinwalkers', label: 'Skinwalker' },
 ];
-
+//set dropdown value to initialValue
     let [selectedValue, setSelectedValue] = useState(initialValue);
 
+    //assign appropriate states to each option
     let [allVisible, setAllVisible] = useState(true);
     let [dogVisible, setDogVisible] = useState(false);
     let [catVisible, setCatVisible] = useState(false);
@@ -57,6 +62,7 @@ const options = [
     let [elephantVisible, setElephantVisible] = useState(false);
     let [skinwalkerVisible, setSkinwalkerVisible] = useState(false);
 
+    //changes useState values depending on dropdown option selected.
     useEffect(() => {
         selectedValue === "all" ? setAllVisible(true) : setAllVisible(false);
         selectedValue === "dogs" ? setDogVisible(true) : setDogVisible(false);
@@ -80,36 +86,49 @@ const options = [
       console.log('Skinwalker = ' + skinwalkerVisible);
 
   
+//width and height control size of area for svg
 const width = 960;
 const height = 500;
+//set margin and offsets
 const margin = { top: 20, right: 30, bottom: 65, left: 90 };
 const xAxisLabelOffset = 54;
 const yAxisLabelOffset = 50;
 
+//data loading message
   if (!data) {
     return <pre>Loading...</pre>;
   }
 
+  //innerHeight and innerWidth take height and width and crop them down to fit within the margins
   const innerHeight = height - margin.top - margin.bottom;
   const innerWidth = width - margin.left - margin.right;
 
+  //sets value of X axis to date
   const xValue = d => d['date'];
   const xAxisLabel = 'Time';
 
+  //sets value of Y axis to hashtag count
   const yValue = d => d.hashtagCount;
   const yAxisLabel = 'hashtag';
 
+  //sets tick format to thousands (i.e. 100k rather than 100,000)
   const xAxisTickFormat = timeFormat('%m/%d/%Y');
 
+  //sets scale for X axis to scale based on time
   const xScale = scaleTime()
     .domain(extent(data, xValue))
     .range([0, innerWidth])
     .nice();
 
+  //sets scale for Y axis to scale linearly
   const yScale = scaleLinear()
     .domain(extent(data, yValue))
     .range([innerHeight, 0]);
 
+  //FOR ALL OUTCOMES SEE 3 LINES BELOW
+  //Dropdown renders dropdown above
+  //AxisBottom and Axisleft draw graph Axis
+  //Marks draws bars for chart
   if ( allVisible === true ) {
   return (
 

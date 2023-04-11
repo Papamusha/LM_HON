@@ -9,6 +9,8 @@ export const Marks = ({
   Format,
   circleRadius
 }) => (
+  //path draws line
+  //circle draws data points
   <g className="marks">
       <path fill="none" stroke="#0b4e52" d={line().x(d => xScale(xValue(d))).y(d => yScale(yValue(d)))(data)} />    
       {data.map(d => {

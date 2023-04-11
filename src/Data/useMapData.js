@@ -8,10 +8,13 @@ export const useMapData = () => {
   const [data, setData] = useState(null);
   console.log(data);
 
+  //set data
   useEffect(() => {
     json(jsonUrl).then(topology => {
+      //each country is an object, it consists of the values 'countries' and 'land'
       const { countries, land } = topology.objects;
       setData({
+        //set land features and interior
         land: feature(topology, land),
         interiors: mesh(topology, countries, (a, b) => a !== b)
       });

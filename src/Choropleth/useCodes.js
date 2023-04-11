@@ -7,6 +7,7 @@ const csvUrl =
 export const useCodes = () => {
   const [data, setData] = useState(null);
   
+  //set data
   useEffect(() => {
     csv(csvUrl).then(setData);
   }, []);

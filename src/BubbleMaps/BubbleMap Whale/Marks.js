@@ -14,8 +14,8 @@ export const Marks = ({
   <g className="marks">
     { useMemo(() => //useMemo is used to stop the scale from being reloaded more than once for optimisation
     <>
-    <path className="sphere" d={path({ type: 'Sphere' })} />
-    <path className="graticules" d={path(graticule())} />
+    <path className="sphere" d={path({ type: 'Sphere' })} /> {/* draw map */}
+    <path className="graticules" d={path(graticule())} /> {/* draw land features */}
     {land.features.map(feature => (
       <path className="land" d={path(feature)} />
     ))}
@@ -23,9 +23,9 @@ export const Marks = ({
     </>,[path, graticule, interiors, land])
     }
     {data.map(d => {
-      const [x, y] = projection(d.coordinates);
-      if (d['hashtag'] === 'whales')
-      return <circle cx={x} cy={y} r={sizeScale(sizeValue(d))} />;
+      const [x, y] = projection(d.coordinates); {/* positions spheres based on coordinate values */}
+      if (d['hashtag'] === 'whales') {/* filter data */}
+      return <circle cx={x} cy={y} r={sizeScale(sizeValue(d))} />; {/* draw spheres on data points */}
     })}
   </g>
 );

@@ -9,6 +9,8 @@ import ScatterGraph from "./ScatterGraph/index";
 import LineChartDeploy from "./LineChart/index";
 import MultiLineChart from "./MultiTest/index.js";
 import Choropleth from "./Choropleth";
+import PieChart from "./PieCharts/PieChart";
+
 
 function App() {
   
@@ -25,6 +27,7 @@ function App() {
             <Route path="/guidepage" element={<GuidePage />} />
             <Route path="/bar" element={<BarChart />} />
             <Route path="scatter" element={<ScatterGraph />} />
+            <Route path="pie" element={<h1>This doesn't work, see code in PieChart.js</h1>} />
             <Route path="line" element={<LineChartDeploy />} />
             <Route path="multiline" element={<MultiLineChart />} />
             <Route path="choropleth" element={<Choropleth />} />

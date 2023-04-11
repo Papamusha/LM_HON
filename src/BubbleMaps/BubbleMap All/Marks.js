@@ -1,9 +1,9 @@
 import { geoNaturalEarth1, geoPath, geoGraticule } from "d3";
 import { useMemo } from "react";
 
-const projection = geoNaturalEarth1();
-const path = geoPath(projection);
-const graticule = geoGraticule();
+const projection = geoNaturalEarth1(); //draw globe projection
+const path = geoPath(projection); //draw path
+const graticule = geoGraticule(); //draw land features (this is complex, info can be found at https://github.com/d3/d3-geo)
 
 export const Marks = ({
   map: { land, interiors },
@@ -16,8 +16,8 @@ export const Marks = ({
       () => (
         //useMemo is used to stop the scale from being reloaded more than once for optimisation
         <>
-          <path className="sphere" d={path({ type: "Sphere" })} />
-          <path className="graticules" d={path(graticule())} />
+          <path className="sphere" d={path({ type: "Sphere" })} /> {/* draw map */}
+          <path className="graticules" d={path(graticule())} /> {/* draw land features */}
           {land.features.map((feature) => (
             <path className="land" d={path(feature)} />
           ))}
@@ -27,8 +27,8 @@ export const Marks = ({
       [path, graticule, interiors, land]
     )}
     {data.map((d) => {
-      const [x, y] = projection(d.coordinates);
-      return <circle cx={x} cy={y} r={sizeScale(sizeValue(d))} />;
+      const [x, y] = projection(d.coordinates); {/* positions spheres based on coordinate values */}
+      return <circle cx={x} cy={y} r={sizeScale(sizeValue(d))} />; {/* draw spheres on data points */}
     })}
   </g>
 );

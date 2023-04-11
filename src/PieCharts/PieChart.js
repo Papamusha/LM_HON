@@ -4,13 +4,13 @@ import { useData } from "../useDataAverages";
 import "../General.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
+//set width and height for chart
 const width = 960;
 const height = 500;
+//radius is calc of 
 const radius = Math.min(width, height) / 2;
 const centreX = width / 2;
 const centreY = height / 2;
-
-
 
 const svg = select()
     .append("svg")
@@ -29,45 +29,56 @@ const svg = select()
     //.style("stroke-width", "3px");
 
 const PieChart = () => {
+    //get data
     const data = useData();
 
     console.log(data);
     
-    const colors = scaleOrdinal()
+    //sets scale for colours
+    const colours = scaleOrdinal()
     .domain(data)
     .range(schemeSet2);
 
+    //set arc for chart
     const pieArc = arc()
     .innerRadius(0)
     .outerRadius(radius);
 
-    const arcs = g.selectAll("arc")
-    .data(pie(data))
-    .enter()
-    .append("g")
-    .attr("class","arc");
+    //arcs has an error, g is not defined
+    //I am unsure why, and sorting this issue is not worth it considering the lack of time available
 
-    arcs.append("path")
-    .attr("fill", function(d, i) {
-        return colors(i);
-    })
-    .attr("d", arc);
+    //feed arc with data and append to <g> tag
+    //const arcs = g.selectAll("arc")
+    //.data(pie(data))
+    //.enter()
+    //.append("g")
+    //.attr("class","arc");
 
-    if(!data) {
-        return <pre>Loading...</pre>;
-    }
+    //place arcs into <path> tags
+    //arcs.append("path")
+    //.attr("fill", function(d, i) {
+        //return colours(i);
+    //})
+    //.attr("d", arc);
 
-    const colorPie = pie().value(1);
+    //data loading message
+    //if(!data) {
+        //return <pre>Loading...</pre>;
+    //}
 
-    return (
-        <svg width={width} height={height}>
-            <g transform={`translate(${centreX}, ${centreY})`}>
-                {colorPie(data).map(d => (
-                    <path fill={colors(d.data['hashtag'])} d={arcs(d)} />
-                ))}
-            </g>
-        </svg>
-    )
+    // initial pie
+    const colourPie = pie().value(1);
+
+    // feed data and parameters into colourpie 
+    //return (
+        //<svg width={width} height={height}>
+            //<g transform={`translate(${centreX}, ${centreY})`}>
+                //{colourPie(data).map(d => (
+                    //<path fill={colours(d.data['hashtag'])} d={arcs(d)} />
+                //))}
+            //</g>
+        //</svg>
+    //)
 
 
 }

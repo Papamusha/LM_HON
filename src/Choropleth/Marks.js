@@ -11,6 +11,10 @@ export const Marks = ({
   rowCode,
   colourScale,
   colourValue
+  //sphere draws map
+  //graticules draw land features
+  //path sets color of country to missingDataColour
+  //interiors draws country lines
 }) => (
   <g className="marks">
     <path className="sphere" d={path({ type: 'Sphere' })} />
@@ -18,7 +22,7 @@ export const Marks = ({
     {countries.features.map(feature => {
       const d = rowCode.get(feature.id);
       if(!d){
-        //console.log(feature.properties.name);
+        console.log(feature.properties.name);
       }
       return (
         <path

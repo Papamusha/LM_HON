@@ -7,6 +7,8 @@ export const SkinwalkerMarks = ({
   Format,
   circleRadius
 }) => (
+  //circle draws points on graph
+  // if includes filter condition
   <g className="marks">
     {data.map(d => {
       if (d['hashtag'] === 'skinwalkers')

@@ -1,4 +1,5 @@
-export const AxisLeft = ({ yScale, innerWidth, tickOffset = 3 }) =>
+export const AxisLeft = ({ yScale, innerWidth, tickOffset = 1 }) =>
+//yScale is the scale of the Y axis on the chart.
   yScale.ticks().map(tickValue => (
     <g className="tick" transform={`translate(0,${yScale(tickValue)})`}>
       <line x2={innerWidth} />

@@ -5,7 +5,9 @@ export const Marks = ({
   xValue,
   yValue,
   tooltipFormat,
-}) =>
+}) => 
+//rect draws each bar for chart
+//bandwidth() finds the width of a band, in this case the width of yScale
   data.map((d) => (
     <rect
       className="mark"

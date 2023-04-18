@@ -74,6 +74,7 @@ const yAxisLabelOffset = 50;
   //DogMarks draws line for Dog values
   //DolphinMarks draws line for Dolphin values
   //spans set legend for graph
+  if (dataDolphin) //This if statement makes sure the program has loaded the last dataset, the page does not render if it checks for all 4 datasets.
   return (
 
     <header>

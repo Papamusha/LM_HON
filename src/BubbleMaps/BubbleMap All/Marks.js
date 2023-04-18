@@ -24,11 +24,47 @@ export const Marks = ({
           <path className="interiors" d={path(interiors)} />
         </>
       ),
-      [path, graticule, interiors, land]
-    )}
+      [path, graticule, interiors, land] //for each data.map seen below, it renders the data points for each search term while assigning a className to allow for each search term to have its own designated colour on the bubblemap.
+    )} 
     {data.map((d) => {
       const [x, y] = projection(d.coordinates); {/* positions spheres based on coordinate values */}
-      return <circle cx={x} cy={y} r={sizeScale(sizeValue(d))} />; {/* draw spheres on data points */}
+        if (d["hashtag"] === "cats") 
+      return <circle className="catMark" cx={x} cy={y} r={sizeScale(sizeValue(d))} />; {/* draw spheres on data points */}
+    })}
+    {data.map((d) => {
+      const [x, y] = projection(d.coordinates); {/* positions spheres based on coordinate values */}
+          if (d["hashtag"] === "dogs") 
+        return <circle className="dogMark" cx={x} cy={y} r={sizeScale(sizeValue(d))} />; {/* draw spheres on data points */}
+    })}
+    {data.map((d) => {
+      const [x, y] = projection(d.coordinates); {/* positions spheres based on coordinate values */}
+          if (d["hashtag"] === "dolphins") 
+        return <circle className="dolphinMark" cx={x} cy={y} r={sizeScale(sizeValue(d))} />; {/* draw spheres on data points */}
+    })}
+    {data.map((d) => {
+      const [x, y] = projection(d.coordinates); {/* positions spheres based on coordinate values */}
+          if (d["hashtag"] === "whales") 
+        return <circle className="whaleMark" cx={x} cy={y} r={sizeScale(sizeValue(d))} />; {/* draw spheres on data points */}
+    })}
+    {data.map((d) => {
+      const [x, y] = projection(d.coordinates); {/* positions spheres based on coordinate values */}
+          if (d["hashtag"] === "rabbits") 
+        return <circle className="rabbitMark" cx={x} cy={y} r={sizeScale(sizeValue(d))} />; {/* draw spheres on data points */}
+    })}
+    {data.map((d) => {
+      const [x, y] = projection(d.coordinates); {/* positions spheres based on coordinate values */}
+          if (d["hashtag"] === "squirrels") 
+        return <circle className="squirrelMark" cx={x} cy={y} r={sizeScale(sizeValue(d))} />; {/* draw spheres on data points */}
+    })}
+    {data.map((d) => {
+      const [x, y] = projection(d.coordinates); {/* positions spheres based on coordinate values */}
+          if (d["hashtag"] === "elephants") 
+        return <circle className="elephantMark" cx={x} cy={y} r={sizeScale(sizeValue(d))} />; {/* draw spheres on data points */}
+    })}
+    {data.map((d) => {
+      const [x, y] = projection(d.coordinates); {/* positions spheres based on coordinate values */}
+          if (d["hashtag"] === "skinwalkers") 
+        return <circle className="skinwalkerMark" cx={x} cy={y} r={sizeScale(sizeValue(d))} />; {/* draw spheres on data points */}
     })}
   </g>
 );

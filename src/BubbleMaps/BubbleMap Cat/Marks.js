@@ -29,9 +29,9 @@ export const Marks = ({
       [path, graticule, interiors, land]
     )}
     {data.map((d) => {
-      const [x, y] = projection(d.coordinates); 
-      if (d["hashtag"] === "cats") 
-        return <circle cx={x} cy={y} r={sizeScale(sizeValue(d))} />; 
+      const [x, y] = projection(d.coordinates); {/* positions spheres based on coordinate values */}
+        if (d["hashtag"] === "cats") 
+      return <circle className="catMark" cx={x} cy={y} r={sizeScale(sizeValue(d))} />; {/* draw spheres on data points */}
     })}
   </g>
 );

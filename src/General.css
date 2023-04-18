@@ -67,9 +67,108 @@ circle {
   opacity: 0.3;
 }
 
-circle {
+circle.catMark {
   fill: #137B80;
   opacity: 0.3;
+}
+
+circle.dogMark {
+  fill: #608d0d;
+  opacity: 0.3;
+}
+
+circle.dolphinMark {
+  fill: #07395a;
+  opacity: 0.3;
+}
+
+circle.whaleMark {
+  fill: #520b6e;
+  opacity: 0.3;
+}
+
+circle.rabbitMark {
+  fill: #546e0b;
+  opacity: 0.3;
+}
+
+circle.squirrelMark {
+  fill: #6e2f0b;
+  opacity: 0.3;
+}
+
+circle.elephantMark {
+  fill: #3f3d3d;
+  opacity: 0.3;
+}
+
+circle.skinwalkerMark {
+  fill: #6e0b0b;
+  opacity: 0.3;
+}
+
+.Blegend-color-1 {
+  height: 25px;
+  width: 25px;
+  background-color: #137B80;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.Blegend-color-2 {
+  height: 25px;
+  width: 25px;
+  background-color: #608d0d;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.Blegend-color-3 {
+  height: 25px;
+  width: 25px;
+  background-color: #6e2f0b;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.Blegend-color-4 {
+  height: 25px;
+  width: 25px;
+  background-color: #546e0b;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.Blegend-color-5 {
+  height: 25px;
+  width: 25px;
+  background-color: #07395a;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.Blegend-color-6 {
+  height: 25px;
+  width: 25px;
+  background-color: #520b6e;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.Blegend-color-7 {
+  height: 25px;
+  width: 25px;
+  background-color: #3f3d3d;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.Blegend-color-8 {
+  height: 25px;
+  width: 25px;
+  background-color: #6e0b0b;
+  border-radius: 50%;
+  display: inline-block;
 }
 
 .circleDog {

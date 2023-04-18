@@ -12,12 +12,12 @@ function NavMain() {
           <Nav className="me-auto">
             <Nav.Link href="/guidepage">Guide</Nav.Link>
             <Nav.Link href="/bubblemap">BubbleMaps</Nav.Link>
-            <Nav.Link href="/scatter">Scatter Graphs</Nav.Link>
-            <Nav.Link href="/pie">Pie Charts</Nav.Link>
-            <Nav.Link href="/bar">Bar Charts</Nav.Link>
-            <Nav.Link href="/line">Line Charts</Nav.Link>
-            <Nav.Link href="/multiline">Multi-line Charts</Nav.Link>
-            <Nav.Link href="/choropleth">Choropleths</Nav.Link>
+            <Nav.Link href="/scatter">Scatter Graph</Nav.Link>
+            <Nav.Link href="/pie">Pie Chart</Nav.Link>
+            <Nav.Link href="/bar">Bar Chart</Nav.Link>
+            <Nav.Link href="/line">Line Chart</Nav.Link>
+            <Nav.Link href="/multiline">Multi-line Chart</Nav.Link>
+            <Nav.Link href="/choropleth">Choropleth</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

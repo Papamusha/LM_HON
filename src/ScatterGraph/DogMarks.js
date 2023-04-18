@@ -12,7 +12,7 @@ export const DogMarks = ({
   <g className="marks">
     {data.map(d => {
       if (d['hashtag'] === 'dogs')
-      return <circle cx={xScale(xValue(d))} cy={yScale(yValue(d))} r={circleRadius} >
+      return <circle className="dogMark" cx={xScale(xValue(d))} cy={yScale(yValue(d))} r={circleRadius} >
         <title>{Format(xValue(d))}</title>
       </circle>
       console.log(d['hashtag']);

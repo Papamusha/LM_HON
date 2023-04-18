@@ -154,7 +154,6 @@ const yAxisLabelOffset = 50;
               <Dropdown id="hashtag-select"
               options={options} selectedValue={selectedValue} onSelectedValueChange={setSelectedValue}
               /> <br/>
-              <text>This currently doesn't work right. Dots represent the points that the line are supposed to follow.</text>
         </div>
 
     <svg width={width} height={height}>
@@ -193,7 +192,15 @@ const yAxisLabelOffset = 50;
           circleRadius={5}
         />
       </g>
-    </svg>
+    </svg> <br/>
+    <span class="Blegend-color-1">Cat </span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+    <span class="Blegend-color-2">Dog</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+    <span class="Blegend-color-3">Squirrel</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+    <span class="Blegend-color-4">Rabbit</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+    <span class="Blegend-color-5">Dolphin</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+    <span class="Blegend-color-6">Whale</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+    <span class="Blegend-color-7">Elephant</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+    <span class="Blegend-color-8">Skinwalker</span>
     </header>
   );
 };
@@ -245,7 +252,8 @@ if ( dogVisible === true ) {
           circleRadius={5}
         />
       </g>
-    </svg>
+    </svg> <br/>
+    <span class="Blegend-color-2">Dog</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
     </header>
   );
 };
@@ -299,7 +307,8 @@ if ( catVisible === true ) {
           circleRadius={5}
         />
       </g>
-    </svg>
+    </svg> <br/>
+    <span class="Blegend-color-1">Cat </span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
     </header>
   );
 };
@@ -351,7 +360,8 @@ if ( squirrelVisible === true ) {
           circleRadius={5}
         />
       </g>
-    </svg>
+    </svg> <br/>
+    <span class="Blegend-color-3">Squirrel</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
     </header>
   );
 };
@@ -403,7 +413,8 @@ if ( rabbitVisible === true ) {
           circleRadius={5}
         />
       </g>
-    </svg>
+    </svg> <br/>
+    <span class="Blegend-color-4">Rabbit</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
     </header>
   );
 };
@@ -455,7 +466,8 @@ if ( dolphinVisible === true ) {
           circleRadius={5}
         />
       </g>
-    </svg>
+    </svg> <br/>
+    <span class="Blegend-color-5">Dolphin</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
     </header>
   );
 };
@@ -507,7 +519,8 @@ if ( whaleVisible === true ) {
           circleRadius={5}
         />
       </g>
-    </svg>
+    </svg> <br/>
+    <span class="Blegend-color-6">Whale</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
     </header>
   );
 };
@@ -559,7 +572,8 @@ if ( elephantVisible === true ) {
           circleRadius={5}
         />
       </g>
-    </svg>
+    </svg> <br/>
+    <span class="Blegend-color-7">Elephant</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
     </header>
   );
 };
@@ -611,7 +625,8 @@ if ( skinwalkerVisible === true ) {
           circleRadius={5}
         />
       </g>
-    </svg>
+    </svg> <br/>
+    <span class="Blegend-color-8">Skinwalker</span>
     </header>
   );
 };

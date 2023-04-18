@@ -25,10 +25,10 @@ export const Marks = ({
     <path className="interiors" d={path(interiors)} />
     </>,[path, graticule, interiors, land])
     }
-    {data.map(d => {
-      const [x, y] = projection(d.coordinates);
-      if (d['hashtag'] === 'rabbits')
-      return <circle cx={x} cy={y} r={sizeScale(sizeValue(d))} />;
+    {data.map((d) => {
+      const [x, y] = projection(d.coordinates); {/* positions spheres based on coordinate values */}
+          if (d["hashtag"] === "rabbits") 
+        return <circle className="rabbitMark" cx={x} cy={y} r={sizeScale(sizeValue(d))} />; {/* draw spheres on data points */}
     })}
   </g>
 );

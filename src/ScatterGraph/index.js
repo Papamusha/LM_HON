@@ -176,7 +176,15 @@ const yAxisLabelOffset = 50;
           circleRadius={5}
         />
       </g>
-    </svg>
+    </svg> <br/>
+    <span class="Blegend-color-1">Cat </span> &nbsp; &nbsp; &nbsp;
+    <span class="Blegend-color-2">Dog</span> &nbsp; &nbsp; &nbsp; &nbsp;
+    <span class="Blegend-color-3">Squirrel</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+    <span class="Blegend-color-4">Rabbit</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+    <span class="Blegend-color-5">Dolphin</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+    <span class="Blegend-color-6">Whale</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+    <span class="Blegend-color-7">Elephant</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; 
+    <span class="Blegend-color-8">Skinwalker</span>
     </header>
   );
 };

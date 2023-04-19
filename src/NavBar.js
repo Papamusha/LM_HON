@@ -10,14 +10,13 @@ function NavMain() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="/guidepage">Guide</Nav.Link>
-            <Nav.Link href="/bubblemap">BubbleMaps</Nav.Link>
+            <Nav.Link href="/bubblemap">Bubble Maps</Nav.Link>
             <Nav.Link href="/scatter">Scatter Graph</Nav.Link>
             <Nav.Link href="/pie">Pie Chart</Nav.Link>
             <Nav.Link href="/bar">Bar Chart</Nav.Link>
             <Nav.Link href="/line">Line Chart</Nav.Link>
             <Nav.Link href="/multiline">Multi-line Chart</Nav.Link>
-            <Nav.Link href="/choropleth">Choropleth</Nav.Link>
+            <Nav.Link href="/choropleth">Choropleth Map</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

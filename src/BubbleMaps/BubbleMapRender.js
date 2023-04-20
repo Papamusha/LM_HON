@@ -128,9 +128,9 @@ function BubbleMapRender() {
   //xValue is called for data filtering
   const xValue = d => d['date']; 
   const dataAv = useDataAv();
-
+  console.log(dataAv);
   //these attempts to filter dataAv to only include the relevant hashtag do not work
-  //they return undefined
+  //the attempts that have been commented out return undefined
   //var dataAvDog = dataAv.filter(d => d.hashtag === 'dogs');
   const dataAvDog = useDataAvDog();
   //var dataAvCat = dataAv.filter(d => d.hashtag === 'cats');  

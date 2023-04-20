@@ -3,6 +3,48 @@
   background-color: #282c34;
 }
 
+@media only screen and (max-width: 600px) {
+  body {
+    width: 2%;
+    padding-left: 300px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  svg {
+    scale: 60%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  h5 {
+    padding-left: 220px;
+    width: 700px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  h4 {
+    margin-left: 200px;
+    width: 500px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  h3 {
+    margin-left: 200px;
+    width: 500px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  span {
+    margin-left: 150px;
+    margin-right: 150px;
+    width: 500px;
+  }
+}
+
 .App-header {
   background-color: #282c34;
   display: flex;
